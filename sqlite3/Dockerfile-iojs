@@ -1,0 +1,13 @@
+FROM alpine:edge
+
+RUN echo "http://nl.alpinelinux.org/alpine/edge/main" > /etc/apk/repositories && \
+    echo "http://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
+    apk update && \
+    apk add --update iojs python make gcc libc-dev g++ && \
+    cd /tmp && \
+    npm install sqlite3 --build-from-source && \
+    cd /tmp/node_modules && \
+    tar czf sqlite3-iojs.tar.gz sqlite3
+    
+VOLUME /sqlite3
+WORKDIR /tmp/node_modules
