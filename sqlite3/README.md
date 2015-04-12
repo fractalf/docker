@@ -1,5 +1,3 @@
-### Build sqlite3 binaries
-
 Builds sqlite3 module binaries for nodejs/iojs on Alpine Linux
 
 Example usage:
