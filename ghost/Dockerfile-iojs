@@ -1,0 +1,27 @@
+FROM alpine:edge
+
+ADD sqlite3-iojs.tar.gz /ghost/node_modules/
+ADD start.bash /ghost-start
+
+RUN \
+    echo "http://nl.alpinelinux.org/alpine/edge/main" > /etc/apk/repositories && \
+    echo "http://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
+    apk update && \
+    apk add wget iojs && \
+    apk upgrade && \
+    cd /ghost && \
+    wget -q --no-check-certificate https://ghost.org/zip/ghost-latest.zip -O ghost.zip && \
+    unzip -q ghost.zip && \
+    rm -f ghost.zip && \
+    rm -rf /var/cache/apk/* && \
+    npm install --production && \
+    sed 's/127.0.0.1/0.0.0.0/' /ghost/config.example.js > /ghost/config.js && \
+    sed -i s/\"iojs\":\ \"~1\.2\.0\"/\"iojs\":\ \"~1\.6\.2\"/ package.json && \
+    adduser ghost -D -h /ghost -s /bin/sh
+
+
+ENV NODE_ENV production
+VOLUME ["/data", "/ghost-override"]
+WORKDIR /ghost
+CMD ["sh", "/ghost-start"]
+EXPOSE 2368
