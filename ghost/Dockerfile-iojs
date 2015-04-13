@@ -3,22 +3,19 @@ FROM alpine:edge
 ADD sqlite3-iojs.tar.gz /ghost/node_modules/
 ADD start.bash /ghost-start
 
-RUN \
-    echo "http://nl.alpinelinux.org/alpine/edge/main" > /etc/apk/repositories && \
+RUN echo "http://nl.alpinelinux.org/alpine/edge/main" > /etc/apk/repositories && \
     echo "http://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
-    apk update && \
-    apk add wget iojs && \
+    apk add --update wget iojs && \
     apk upgrade && \
+    wget -q --no-check-certificate https://ghost.org/zip/ghost-latest.zip -O /tmp/ghost.zip && \
+    unzip -q /tmp/ghost.zip -d /ghost && \
     cd /ghost && \
-    wget -q --no-check-certificate https://ghost.org/zip/ghost-latest.zip -O ghost.zip && \
-    unzip -q ghost.zip && \
-    rm -f ghost.zip && \
-    rm -rf /var/cache/apk/* && \
     npm install --production && \
     sed 's/127.0.0.1/0.0.0.0/' /ghost/config.example.js > /ghost/config.js && \
     sed -i s/\"iojs\":\ \"~1\.2\.0\"/\"iojs\":\ \"~1\.6\.2\"/ package.json && \
-    adduser ghost -D -h /ghost -s /bin/sh
-
+    adduser ghost -D -h /ghost -s /bin/sh && \
+    npm cache clean && \
+    rm -rf /var/cache/apk/* /tmp/*
 
 ENV NODE_ENV production
 VOLUME ["/data", "/ghost-override"]
