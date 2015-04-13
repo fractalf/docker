@@ -1,4 +1,4 @@
-### Ghost on Alpine Linux (iojs or nodejs)
+### Ghost on iojs (or nodejs) inside Alpine Linux base image 
 
 A docker image containing:
 
