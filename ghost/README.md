@@ -8,7 +8,7 @@ A docker image containing:
 
 The official [ghost docker image](https://registry.hub.docker.com/u/library/ghost/) use Debian Linux as base image and has a size of **~215 MB**.
 
-This image instead use Alpine Linux as base image which results in a total size of only *~88-96 MB* and also runs ghost on iojs v1.6.4.
+This image instead use Alpine Linux as base image which results in a total size of only **~88-96 MB** and also runs ghost on iojs v1.6.4.
 
 Try it out over at [Docker hub](https://registry.hub.docker.com/u/fractalf/ghost/)
 
