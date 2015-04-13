@@ -7,3 +7,4 @@ docker build -t sqlite3 .
 docker run -v /target/path:/sqlite3 --rm sqlite3 mv sqlite3-iojs.tar.gz /sqlite3
 ```
 
+Your binaries will now be at */target/path/sqlite3-iojs.tar.gz*
