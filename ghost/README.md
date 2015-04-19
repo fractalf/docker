@@ -14,3 +14,5 @@ Try it out over at [Docker hub](https://registry.hub.docker.com/u/fractalf/ghost
 
 ####Note!
 The binaries of sqlite3 won't work out of the box with *npm install sqlite3* (which is required when installing ghost),  therefore they need to be pre-build in the Alpine Linux container. The pre-build files are included here and was [made like this](https://github.com/fractalf/docker/tree/master/sqlite3)
+
+Ideas from [this repo](https://github.com/dockerfile/ghost)
