@@ -9,6 +9,3 @@ RUN echo "http://nl.alpinelinux.org/alpine/edge/main" > /etc/apk/repositories &&
     chmod a+x /build.sh
 
 CMD ["sh", "/build.sh"]
-
-# run -it --rm -v $(pwd):/export fractalf/sqlite
-
