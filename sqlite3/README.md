@@ -1,10 +1,11 @@
-Builds sqlite3 module binaries for nodejs/iojs on Alpine Linux
-
-Example usage:
+Builds sqlite3 module binaries for iojs on Alpine Linux
 ```
-ln -s Dockerfile-iojs Dockerfile
-docker build -t sqlite3 .
-docker run -v /target/path:/sqlite3 --rm sqlite3 mv sqlite3-iojs.tar.gz /sqlite3
+docker build -t username/sqlite3 .
 ```
 
-Your binaries will now be at */target/path/sqlite3-iojs.tar.gz*
+Usage:
+```
+docker run -it --rm -v $(pwd):/export username/sqlite3
+```
+
+This gives you the file *sqlite3.tar.gz* in your current directory.
