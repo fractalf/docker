@@ -1,7 +1,7 @@
 FROM alpine:edge
 
-ADD sqlite3-iojs.tar.gz /ghost/node_modules/
-ADD start.bash /ghost-start
+ADD sqlite3.tar.gz /ghost/node_modules/
+COPY entrypoint.sh /entrypoint.sh
 
 RUN echo "http://nl.alpinelinux.org/alpine/edge/main" > /etc/apk/repositories && \
     echo "http://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
@@ -12,16 +12,12 @@ RUN echo "http://nl.alpinelinux.org/alpine/edge/main" > /etc/apk/repositories &&
     cd /ghost && \
     npm install --production && \
     sed 's/127.0.0.1/0.0.0.0/' /ghost/config.example.js > /ghost/config.js && \
-    sed -i s/\"iojs\":\ \"~1\.2\.0\"/\"iojs\":\ \"~1\.6\.2\"/ package.json && \
+    sed -i s/\"iojs\":\ \"~1\.2\.0\"/\"iojs\":\ \"~1\.6\.4\"/ package.json && \
     adduser ghost -D -h /ghost -s /bin/sh && \
     npm cache clean && \
     rm -rf /var/cache/apk/* /tmp/*
 
-ENV GHOST_DIR /ghost
-WORKDIR $GHOST_DIR
-
-
-COPY entrypoint.sh /entrypoint.sh
+WORKDIR /ghost
 ENTRYPOINT ["/entrypoint.sh"]
 EXPOSE 2368
 CMD ["npm", "start", "--production"]
