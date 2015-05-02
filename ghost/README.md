@@ -10,19 +10,23 @@ The [official ghost docker image](https://registry.hub.docker.com/u/library/ghos
 This image use Alpine Linux as base image which results in a total size of only **~96 MB** and runs Ghost on iojs instead of nodejs.
 Try it out over at [Docker hub](https://registry.hub.docker.com/u/fractalf/ghost/)
 
-Usage:
+Basic usage (testing)
 ```
-docker run -d -e GHOST=/data/mysite.com -v /host/www/mysite.com:/data/mysite.com <image>
+docker run -d -p 80:2368 <image>
 ```
 
-or
-
+Advanced usage (docker data volume)
 ```
-docker run -d -e GHOST=/data/mysite.com --volumes-from dataContainer <image>
+docker run -d -p 80:2368 -e GHOST=/data/mysite.com -v /host/www/mysite.com:/data/mysite.com <image>
+```
+
+Advanced usage (docker data volume container)
+```
+docker run -d -p 80:2368 -e GHOST=/data/mysite.com --volumes-from dataContainer <image>
 ```
 
 Set *$GHOST* to to the folder for ghost content and config.
-Example:
+A typical folder structure:
 ```
 /data/mysite.com/content/apps
 /data/mysite.com/content/data
