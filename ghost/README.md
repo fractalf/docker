@@ -8,7 +8,7 @@ A docker image containing:
 
 The [official ghost docker image](https://registry.hub.docker.com/u/library/ghost/) runs Ghost on nodejs with Debian Linux as base image and has a size of **~215 MB**.
 This image use Alpine Linux as base image which results in a total size of only **~96 MB** and runs Ghost on iojs instead of nodejs.
-Try it out over at [Docker hub](https://registry.hub.docker.com/u/fractalf/ghost/)
+Try it out over at [Docker hub](https://registry.hub.docker.com/u/fractalf/ghost/).
 
 Basic usage (testing)
 ```
