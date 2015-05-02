@@ -12,7 +12,29 @@ This image use Alpine Linux as base image which results in a total size of only 
 
 Try it out over at [Docker hub](https://registry.hub.docker.com/u/fractalf/ghost/)
 
-####Note!
-The binaries of sqlite3 won't work out of the box with *npm install sqlite3* (which is required when installing ghost),  therefore they need to be pre-build in the Alpine Linux container. The pre-build files are included here and was [made like this](https://github.com/fractalf/docker/tree/master/sqlite3)
+Usage:
+```
+docker run -d -e GHOST=/data/mysite.com -v /host/www/mysite.com:/data/mysite.com <image>
+```
 
-Some inspiration taken from [the official ghost repo](https://github.com/docker-library/ghost)
+or
+
+```
+docker run -d -e GHOST=/data/mysite.com --volumes-from dataContainer <image>
+```
+
+Set *$GHOST* to to the folder for ghost content and config.
+Example:
+```
+/data/mysite.com/content/apps
+/data/mysite.com/content/data
+/data/mysite.com/content/images
+/data/mysite.com/content/themes
+/data/mysite.com/confing.js
+```
+
+
+
+####Note!
+The binaries of sqlite3 won't work out of the box with *npm install sqlite3* (which is required when installing ghost),  therefore they need to be pre-build in the Alpine Linux container. The pre-build files are included here and was [made like this](https://github.com/fractalf/docker/tree/master/sqlite3).
+
