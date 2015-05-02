@@ -12,7 +12,7 @@ RUN echo "http://nl.alpinelinux.org/alpine/edge/main" > /etc/apk/repositories &&
     cd /ghost && \
     npm install --production && \
     sed 's/127.0.0.1/0.0.0.0/' /ghost/config.example.js > /ghost/config.js && \
-    sed -i s/\"iojs\":\ \"~1\.2\.0\"/\"iojs\":\ \"~1\.6\.4\"/ package.json && \
+    sed -i 's/"iojs": "~1.2.0"/"iojs": "~1.6.4"/' package.json && \
     adduser ghost -D -h /ghost -s /bin/sh && \
     npm cache clean && \
     rm -rf /var/cache/apk/* /tmp/*
