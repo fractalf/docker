@@ -17,8 +17,8 @@ RUN apk add wget iojs && \
     npm cache clean && \
     rm -rf /var/cache/apk/* /tmp/*
 
-WORKDIR /ghost
-EXPOSE 2368
 COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
+WORKDIR /ghost
+EXPOSE 2368
 CMD ["npm", "start", "--production"]
