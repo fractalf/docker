@@ -1,10 +1,10 @@
 FROM alpine:latest
 
-ENV NGINX_VERSION nginx-1.7.12
+ENV NGINX_VERSION nginx-1.9.1
 
 RUN echo "http://nl.alpinelinux.org/alpine/edge/main" > /etc/apk/repositories && \
     echo "http://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
-    apk --update add php-fpm php-mysqli php-json openssl-dev pcre-dev zlib-dev wget build-base && \
+    apk --update add php-fpm php-mysqli php-pdo_mysql php-pdo_sqlite php-json openssl-dev pcre-dev zlib-dev wget build-base && \
     mkdir -p /tmp && \
     cd /tmp && \
     wget http://nginx.org/download/${NGINX_VERSION}.tar.gz && \
